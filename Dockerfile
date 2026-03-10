@@ -12,4 +12,4 @@ RUN mkdir -p /opt/cronicle/data /opt/cronicle/logs /opt/cronicle/plugins \
 
 EXPOSE 3012
 
-CMD ["node", "lib/main.js"]
+CMD ["node", "bin/cronicle.js", "--echo", "--foreground", "--master"]
