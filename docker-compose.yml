@@ -5,9 +5,14 @@ services:
     hostname: cronicle
     environment:
       TZ: Europe/Paris
+    ports:
+      - "3012"
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - /docker/cronicle/data:/opt/cronicle/data
-      - /docker/cronicle/logs:/opt/cronicle/logs
-      - /docker/cronicle/plugins:/opt/cronicle/plugins
+      - cronicle_data:/opt/cronicle/data
+      - cronicle_logs:/opt/cronicle/logs
+      - cronicle_plugins:/opt/cronicle/plugins
+
+volumes:
+  cronicle_data:
+  cronicle_logs:
+  cronicle_plugins:
