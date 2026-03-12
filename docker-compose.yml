@@ -1,28 +1,13 @@
 services:
   cronicle:
     image: soulteary/cronicle:0.9.80
-    container_name: cronicle
     restart: unless-stopped
     hostname: cronicle
     environment:
-      - TZ=Europe/Paris
+      TZ: Europe/Paris
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /docker/cronicle/data:/opt/cronicle/data
       - /docker/cronicle/logs:/opt/cronicle/logs
       - /docker/cronicle/plugins:/opt/cronicle/plugins
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.cronicle.rule=Host(`cronicle.dev.fabdevlab.fr`)"
-      - "traefik.http.routers.cronicle.entrypoints=websecure"
-      - "traefik.http.routers.cronicle.tls=true"
-      - "traefik.http.routers.cronicle.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cronicle.loadbalancer.server.port=3012"
-      - "traefik.docker.network=proxy"
-    networks:
-      - proxy
-
-networks:
-  proxy:
-    external: true
